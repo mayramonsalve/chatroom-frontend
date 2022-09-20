@@ -1,38 +1,132 @@
-.App {
+body {
+  background-color: #FaF9F9!important;
+}
+
+Form Button {
+  width: 100%;
+}
+
+.btn {
+  background-color: #722F37!important;
+  border-color: #722F37!important;
+  color: #EAE1E2!important;
+}
+
+.btn:disabled {
+  background-color: #EAE1E2!important;
+  border-color: #EAE1E2!important;
+  color:#722F37!important;
+}
+
+h2 {
+  color: #722F37;
+}
+
+h6 {
+  color: #EAE1E2;
+}
+
+hr.line {
+  border: 1px solid #722F37;
+}
+
+.app {
+  margin: auto;
+  padding-top: 40px;
+  width: 950px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.lobby {
+  width: 400px;
+  margin: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-control {
+  color: #722F37;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.chat {
+  display: grid;
 }
 
-.App-link {
-  color: #61dafb;
+.typebox input {
+  width: 85%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.typebox button {
+  width: 15%;
+}
+
+.leave-room {
+  text-align: right;
+  margin-bottom: 4px;
+}
+
+.leave-room .btn{
+  color: #722F37!important;
+  background-color: #C0C0C0!important;
+  border-color: #C0C0C0!important;
+}
+
+.form-control:disabled,
+.form-select:disabled{
+  color: #722F37!important;
+  background-color: #C0C0C0!important;
+}
+
+.users-list {
+  float: left;
+  background-color: #722F37;
+  color:white;
+  width: 200px;
+  height: 440px;
+  margin-right: 4px;
+}
+
+.messages {
+  height: 400px;    
+  background-color: white;
+  color: #722F37;
+  overflow: auto;
+  border-radius: 5px;
+  margin-bottom: 2px;
+}
+
+.user-message {
+  text-align: right;
+  padding-right: 5px;
+  font-size: 18px;
+}
+
+.message {
+  display: inline-flex;
+  margin: 0px auto 0px auto;
+  padding: 5px 10px;
+  font-size: 15px;
+  color:white;
+  border-radius: 20px;
+  margin-top: 3px;
+}
+
+.message.bg-primary {
+  background-color: #722F37!important;
+}
+
+.message.bg-primary.bot {
+  background-color: #EAE1E2!important;
+  color: #722F37!important;
+}
+
+.from-user {
+  font-size: small;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  color: #722F37;
+}
+
+.from-user span{
+  font-size: x-small;
+  margin-left: 5px;
+  color: #C0C0C0;
 }
