@@ -8,6 +8,7 @@ import { useState } from 'react';
 const App = () =>
 {
   const [connection, setConnection] = useState();
+  const [bot, setBot] = useState();
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [roomName , setRoomName] = useState('')
@@ -24,6 +25,11 @@ const App = () =>
                           .withUrl("https://localhost:7181/chat")
                           .configureLogging(LogLevel.Information)
                           .build();
+      const bot = new HubConnectionBuilder()
+                          .withUrl("https://localhost:7203/bot")
+                          .configureLogging(LogLevel.Information)
+                          .build();
+    
       connection.on("UsersInRoom", (users) => 
       {
         setUsers(users); 
@@ -38,13 +44,16 @@ const App = () =>
 
       connection.onclose(e => {
         setConnection();
+        setBot();
         setMessages([]);
         setUsers([]);
       });
 
       await connection.start();
+      await bot.start();
       await connection.invoke("JoinRoom", {user, room});
       setConnection(connection);
+      setBot(bot);
     }
     catch(e)
     {
@@ -57,6 +66,7 @@ const App = () =>
     try
     {
       await connection.stop();
+      await bot.stop();
       setRoomName("");
     }
     catch(e)
@@ -69,8 +79,18 @@ const App = () =>
   {
     try
     {
+      if(message.startsWith('/stock='))
+      {
+        var code = message.split('=');
+        var stockCode = code[1];
+        var room = roomName;
+        await bot.invoke("StockBot", {stockCode, room});
+      }
+      else
+      {
       var date = new Date();
       await connection.invoke("SendMessage", {message, date});
+      }
     }
     catch(e)
     {
